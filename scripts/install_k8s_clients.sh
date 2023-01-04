@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
-export SUDO=$(if [ -x "$(command -v sudo)" ]; then echo "sudo"; else echo ""; fi)
+#export SUDO=$(if [ -x "$(command -v sudo)" ]; then echo "sudo"; else echo ""; fi)
 
 function install_kubectl() {
     kubectl_version=v1.23.0
@@ -9,7 +9,8 @@ function install_kubectl() {
 
     curl -LO https://dl.k8s.io/${kubectl_version}/bin/linux/amd64/kubectl.sha256
     echo "$(<kubectl.sha256)  kubectl" | sha256sum --check
-    ${SUDO} install kubectl /usr/local/bin/
+    # ${SUDO} install kubectl /usr/local/bin/
+    install kubectl $HOME/.local/bin/
     rm -f kubectl.sha256 kubectl
 
     which kubectl > /dev/null
@@ -23,7 +24,8 @@ function install_oc() {
 
     echo "Installing oc..."
     for i in {1..4}; do
-        curl --retry 3 -SL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.8/openshift-client-linux.tar.gz | tar -xz -C /usr/local/bin && break
+        # curl --retry 3 -SL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.8/openshift-client-linux.tar.gz | tar -xz -C /usr/local/bin && break
+        curl --retry 3 -SL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.8/openshift-client-linux.tar.gz | tar -xz -C $HOME/.local/bin && break
         echo "oc installation failed. Retrying again in 5 seconds..."
         sleep 5
     done

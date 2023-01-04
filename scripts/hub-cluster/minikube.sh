@@ -9,7 +9,7 @@ set -o xtrace
 
 MINIKUBE_DISK_SIZE="${MINIKUBE_DISK_SIZE:-50g}"
 MINIKUBE_RAM_MB="${MINIKUBE_RAM_MB:-8192}"
-export SUDO=$(if [ -x "$(command -v sudo)" ]; then echo "sudo"; else echo ""; fi)
+#export SUDO=$(if [ -x "$(command -v sudo)" ]; then echo "sudo"; else echo ""; fi)
 
 __dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -46,8 +46,8 @@ function _init_minikube() {
 
 function install() {
     minikube_version=v1.25.2
-    curl --retry 3 -Lo minikube https://storage.googleapis.com/minikube/releases/${minikube_version}/minikube-linux-amd64
-    ${SUDO} install minikube /usr/local/bin/
+    curl --retry 3 -L https://storage.googleapis.com/minikube/releases/${minikube_version}/minikube-linux-amd64 -o $HOME/.local/bin/minikube
+    #${SUDO} install minikube /usr/local/bin/
     minikube version
     rm -f minikube
 }

@@ -177,7 +177,8 @@ function install_packages() {
     sudo systemctl enable --now xinetd
 
     echo "Installing python packages"
-    sudo pip3 install aicli
+    # sudo pip3 install aicli
+    pip3 install aicli --user
 }
 
 function install_skipper() {
@@ -187,9 +188,9 @@ function install_skipper() {
     #grep -qxF "export PATH=~/.local/bin:$PATH" ~/.bashrc || echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
     #export PATH="$PATH:~/.local/bin"
 
-    if ! [ -x "$(command -v skipper)" ]; then
-        sudo cp ~/.local/bin/skipper /usr/local/bin
-    fi
+    # if ! [ -x "$(command -v skipper)" ]; then
+    #     sudo cp ~/.local/bin/skipper /usr/local/bin
+    # fi
 }
 
 function config_firewalld() {

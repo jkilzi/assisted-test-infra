@@ -23,8 +23,10 @@ function install() {
 	fi
 
 	echo "Installing kind $KIND_VERSION..."
-	curl -L https://kind.sigs.k8s.io/dl/v$KIND_VERSION/kind-linux-amd64 -o /usr/local/bin/kind
-	chmod u+x /usr/local/bin/kind
+	# curl -L https://kind.sigs.k8s.io/dl/v$KIND_VERSION/kind-linux-amd64 -o /usr/local/bin/kind
+	curl -L https://kind.sigs.k8s.io/dl/v$KIND_VERSION/kind-linux-amd64 -o $HOME/.local/bin/kind
+	# chmod u+x /usr/local/bin/kind
+	chmod u+x $HOME/.local/bin/kind
 	echo "Installed successfully!"
 }
 

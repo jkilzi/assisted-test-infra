@@ -4,12 +4,12 @@ build-container-tag: latest
 
 volumes:
   # programs
-  - /usr/local/oc:/usr/local/oc
-  - /usr/local/bin/oc:/usr/local/bin/oc
-  - /usr/bin/minikube:/usr/bin/minikube
-  - /usr/local/bin/minikube:/usr/local/bin/minikube
-  - /usr/bin/kubectl:/usr/bin/kubectl
-  - /usr/local/bin/kubectl:/usr/local/bin/kubectl
+  - $HOME/.local/oc:/usr/local/oc
+  - $HOME/.local/bin/oc:/usr/local/bin/oc
+  # - /usr/bin/minikube:/usr/bin/minikube
+  - $HOME/.local/bin/minikube:/usr/local/bin/minikube
+  # - /usr/bin/kubectl:/usr/bin/kubectl
+  - $HOME/.local/bin/kubectl:/usr/local/bin/kubectl
   - $MINIKUBE_HOME:$MINIKUBE_HOME
   - $(which iptables):/usr/sbin/iptables
   # config
